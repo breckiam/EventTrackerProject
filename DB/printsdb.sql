@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `three_d_print` (
   `print_temp` INT NULL,
   `print_speed` INT NULL,
   `adhesion_layer` VARCHAR(45) NULL,
-  `print_quality` INT NULL,
+  `print_quality` DOUBLE NULL,
   `infill` INT NULL,
   `supports` TINYINT NULL,
   `print_img_url` VARCHAR(2000) NULL,

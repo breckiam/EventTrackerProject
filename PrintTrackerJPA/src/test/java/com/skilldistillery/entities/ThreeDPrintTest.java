@@ -45,7 +45,10 @@ class ThreeDPrintTest {
 	@Test
 	void test_THreeDPrint_basic_entity_mapping() {
 		assertNotNull(print);
-		assertEquals("octopus", print.getName());
+		assertEquals("Dino", print.getName());
+		assertEquals("https://www.thingiverse.com/thing:913069", print.getStlFileUrl());
+		assertEquals(0.20, print.getPrintQuality());
+		assertEquals(false, print.getSupports());
 	}
 
 }
