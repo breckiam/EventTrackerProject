@@ -24,8 +24,21 @@ public class ThreeDPrintController {
 	private ThreeDPrintService serv;
 	
 	@GetMapping("prints")
-	public List<ThreeDPrint> index() {
-		return serv.index();
+	public List<ThreeDPrint> index(HttpServletResponse resp) {
+		List<ThreeDPrint> tdpList = serv.index();
+		if (tdpList.isEmpty()) {
+			resp.setStatus(404);
+		}
+		return tdpList;
+	}
+	
+	@GetMapping("prints/search/{keyword}")
+	public List<ThreeDPrint> searchByKeyword(@PathVariable String keyword, HttpServletResponse resp) {
+		List<ThreeDPrint>  tdpList = serv.findByNameKeyword(keyword);
+		if (tdpList.isEmpty()) {
+			resp.setStatus(404);
+		}
+		return tdpList;
 	}
 	
 	@GetMapping("prints/{id}")

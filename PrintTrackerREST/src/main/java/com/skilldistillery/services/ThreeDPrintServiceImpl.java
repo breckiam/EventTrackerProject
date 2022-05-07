@@ -19,6 +19,11 @@ public class ThreeDPrintServiceImpl implements ThreeDPrintService {
 	public List<ThreeDPrint> index() {
 		return repo.findAll();
 	}
+	
+	@Override
+	public List<ThreeDPrint> findByNameKeyword(String keyword) {
+		return repo.findByNameLike(keyword);
+	}
 
 	@Override
 	public ThreeDPrint findById(int id) {
@@ -59,5 +64,7 @@ public class ThreeDPrintServiceImpl implements ThreeDPrintService {
 		}
 		return repo.saveAndFlush(print);
 	}
+
+
 
 }
