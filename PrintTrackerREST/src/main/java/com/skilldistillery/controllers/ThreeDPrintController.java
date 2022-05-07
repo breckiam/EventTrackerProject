@@ -52,11 +52,15 @@ public class ThreeDPrintController {
 	}
 	
 	@PostMapping("prints")
-	public ThreeDPrint addPrint(@RequestBody ThreeDPrint print, HttpServletResponse resp) {
+	public ThreeDPrint addPrint(
+			@RequestBody ThreeDPrint print,
+			HttpServletResponse resp
+			) {
 		ThreeDPrint newPrint = serv.createPrint(print);
 		if (newPrint == null) {
-			resp.setStatus(201);
+			resp.setStatus(409);
 		}
+		resp.setStatus(201);
 		return newPrint;
 	}
 	
