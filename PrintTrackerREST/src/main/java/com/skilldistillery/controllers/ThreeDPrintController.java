@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,5 +67,16 @@ public class ThreeDPrintController {
 			resp.setStatus(400);
 		}
 		return upPrint;
+	}
+	
+	@DeleteMapping("prints/{id}")
+	public void deleteFilm(@PathVariable int id, HttpServletResponse resp) {
+		boolean deleted = serv.deletePrint(id);
+		int dataSize = ( serv.index().size() ) - 1;
+		if (!deleted && id > dataSize) {
+			resp.setStatus(404);
+		} else if (!deleted && id <= dataSize) {
+			resp.setStatus(410);
+		}
 	}
 }
