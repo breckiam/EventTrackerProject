@@ -13,17 +13,17 @@ delete 3D prints from the database.
 
 ## REST route URIs
 - PREFIX: http://54.177.221.5:8080/PrintTrackerREST
-  - GET /api/prints
+  - GET <strong>/api/prints</strong>
     - Print List: returns collection of 3D prints.
-  - GET /api/prints/3  
+  - GET <strong>/api/prints/3  </strong>
       - Print By ID: returns 3D print that matched ID searched.
-  - POST /api/prints
+  - POST <strong> /api/prints </strong>
     - Print Add: Adds new 3D Print to the database, and returns a 3D Print object
-  - PUT /api/prints/8
+  - PUT <strong> /api/prints/8 </strong>
       - Print Update: Updates a print by searching for print by ID then updating with new info if found.
-  - GET /api/prints/search/Dino
+  - GET <strong> /api/prints/search/Dino </strong>
         - Print Search: returns a collection of 3D Prints that match keyword searched.
-  - DEL /api/prints/3
+  - DEL <strong> /api/prints/3 </strong>
         - Print Delete: Deletes print if the ID entered is found.
 ## Technologies used
 - Java
