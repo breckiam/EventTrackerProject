@@ -12,18 +12,19 @@ prints that you want to have access too. The user can create, search, update, an
 delete 3D prints from the database.
 
 ## REST route URIs
-- GET http://localhost:8083/api/prints
-  - Print List: returns collection of 3D prints.
-- GET http://localhost:8083/api/prints/3  
-    - Print By ID: returns 3D print that matched ID searched.
-- POST http://localhost:8083/api/prints
-  - Print Add: Adds new 3D Print to the database, and returns a 3D Print object
-- PUT http://localhost:8083/api/prints/8
-    - Print Update: Updates a print by searching for print by ID then updating with new info if found.
-- GET http://localhost:8083/api/prints/search/Dino
-      - Print Search: returns a collection of 3D Prints that match keyword searched.
-- DEL http://localhost:8083/api/prints/3
-      - Print Delete: Deletes print if the ID entered is found.
+- PREFIX: http://54.177.221.5:8080/PrintTrackerREST
+  - GET /api/prints
+    - Print List: returns collection of 3D prints.
+  - GET /api/prints/3  
+      - Print By ID: returns 3D print that matched ID searched.
+  - POST /api/prints
+    - Print Add: Adds new 3D Print to the database, and returns a 3D Print object
+  - PUT /api/prints/8
+      - Print Update: Updates a print by searching for print by ID then updating with new info if found.
+  - GET /api/prints/search/Dino
+        - Print Search: returns a collection of 3D Prints that match keyword searched.
+  - DEL /api/prints/3
+        - Print Delete: Deletes print if the ID entered is found.
 ## Technologies used
 - Java
   - Version: 1.8
