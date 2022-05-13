@@ -17,6 +17,25 @@ function init() {
 			getPrintById(search);
 		}
 	});
+
+	document.createPrint.createBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		let errDiv = document.getElementById('errorDiv');
+		while(errDiv.firstChild) {
+			errDiv.removeChild(errDiv.firstElementChild);
+		}
+		let name = document.createPrint.printName.value;
+		let stlUrl = document.createPrint.stlUrl.value;
+		if (name != "" && stlUrl != "") {
+			console.log("not null reqirements met");
+		} else {
+			let p = document.createElement('p');
+			p.textContent = '* Print Name and STL url are required';
+			p.style.color = 'red';
+			errDiv.appendChild(p);
+
+		}
+	});
 }
 
 function getPrintById(search) {
