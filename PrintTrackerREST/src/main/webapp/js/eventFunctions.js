@@ -5,6 +5,7 @@ window.addEventListener('load', (e) => {
 
 function init() {
 	console.log("in init()");
+	getAllPrints();
 	document.searchPrints.searchBtn.addEventListener('click', (e) => {
 		e.preventDefault();
 		let search = document.searchPrints.search.value;
@@ -53,6 +54,27 @@ function getPrintsByKeyword(search) {
 				}
 			} else {
 				console.log('No print found');
+			}
+		}
+	};
+
+	xhr.send();
+}
+
+function getAllPrints() { 
+	let xhr = new XMLHttpRequest();
+
+	xhr.open('GET', 'api/prints', true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let prints = JSON.parse(xhr.responseText);
+				for (let print of prints) {
+					console.log(print);
+				}
+			} else {
+				console.log('No prints found');
 			}
 		}
 	};
