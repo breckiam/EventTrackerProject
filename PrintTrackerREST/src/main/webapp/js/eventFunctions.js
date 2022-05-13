@@ -30,7 +30,7 @@ function getPrintById(search) {
 				let print = JSON.parse(xhr.responseText);
 				console.log(print);
 			} else {
-				console.log('Something went wrong');
+				console.log('no print found');
 			}
 		}
 	};
@@ -40,5 +40,22 @@ function getPrintById(search) {
 }
 
 function getPrintsByKeyword(search) {
+	let xhr = new XMLHttpRequest();
 
+	xhr.open('GET', 'api/prints/search/' + search, true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				let prints = JSON.parse(xhr.responseText);
+				for (let print of prints) {
+					console.log(print);
+				}
+			} else {
+				console.log('No print found');
+			}
+		}
+	};
+
+	xhr.send();
 }
