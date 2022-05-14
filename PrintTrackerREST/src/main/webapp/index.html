@@ -36,6 +36,31 @@
         <input type="date" name="createDate"><br>
         <button name="createBtn">Create</button>
     </form>
+    <br><br>
+    <form name="updatePrint">
+        <input type="number" placeholder="id" name="id"><br>
+        <input type="text" placeholder="name" name="printName"><br>
+        <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
+        <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
+        <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
+        <input type="text" placeholder="PLA" name="filamentType"><br>
+        <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
+        <input type="number" step="0.01" placeholder="°C" name="printTemp"><br>
+        <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
+        <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
+        <input type="text"  placeholder="skirt" name="adhesionLayer">
+        <br>
+        <label for="supports">Supports?</label>
+        <input type="radio" name="supports" value="true" id="yes">
+        <label for="yes">yes </label>
+        <input type="radio" name="supports" value="false" id="no" checked>
+        <label for="no">no </label>
+        <br>
+        <input type="text" placeholder="Image url" name="imageUrl"><br>
+        <input type="number" placeholder="creates" name="creates"><br>
+        <input type="date" name="createDate"><br>
+        <button name="updateBtn">update</button>
+    </form>
 
 </body>
 </html>

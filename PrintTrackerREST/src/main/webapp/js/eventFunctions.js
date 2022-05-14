@@ -37,6 +37,11 @@ function init() {
 
 		}
 	});
+
+	document.updatePrint.updateBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		updatePrint(document.updatePrint.id.value);
+	});
 }
 
 function getPrintById(search) {
@@ -146,3 +151,49 @@ function createPrint() {
 	// Pass JSON as request body
 	xhr.send(userPrintJson);
 }
+
+function updatePrint(id) {
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', 'api/prints/' + id, true);
+
+	xhr.setRequestHeader("Content-type", "application/json"); // Specify JSON request body
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
+				let print = JSON.parse(xhr.responseText);
+				console.log(print);
+			}
+			else {
+				console.log('Print was not created');
+			}
+		}
+	};
+
+	// JavaScript data (object)
+	let userPrint = {
+		name: document.updatePrint.printName.value,
+        stlFileUrl: document.updatePrint.stlUrl.value,
+        customGcodeUrl: document.updatePrint.gcodeUrl.value,
+        printerName: document.updatePrint.printerName.value,
+        filamentType: document.updatePrint.filamentType.value,
+        filamentBrand: document.updatePrint.filamentBrand.value,
+        printTemp: document.updatePrint.printTemp.value,
+        printSpeed: document.updatePrint.printSpeed.value,
+        adhesionLayer: document.updatePrint.adhesionLayer.value,
+        printQuality: document.updatePrint.printQuality.value,
+        supports: document.updatePrint.supports.value,
+        printImgUrl: document.updatePrint.imageUrl.value,
+        creates: document.updatePrint.creates.value,
+        lastDateCreated: document.updatePrint.createDate.value,
+
+	};
+
+	let userPrintJson = JSON.stringify(userPrint); // Convert JS object to JSON string
+	
+
+	// Pass JSON as request body
+	xhr.send(userPrintJson);
+}
+
