@@ -8,7 +8,7 @@ window.addEventListener('load', (e) => {
 function init() {
 
 	
-	getAllPrints();
+	
 	document.searchPrints.searchBtn.addEventListener('click', (e) => {
 		e.preventDefault();
 		var search = document.searchPrints.search.value;
@@ -65,6 +65,12 @@ function init() {
 		}
 	})
 	}
+	let showAllButton = document.getElementById('findAllBtn');
+	showAllButton.addEventListener('click', (e) => {
+		e.preventDefault();
+		getAllPrints();
+	})
+
 	}
 
 
@@ -119,9 +125,7 @@ function getAllPrints() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let prints = JSON.parse(xhr.responseText);
-				for (let print of prints) {
-					console.log(print);
-				}
+				displayAllPrints(prints);
 			} else {
 				console.log('No prints found');
 			}
@@ -241,7 +245,7 @@ function deletePrint(id) {
 
 function showSinglePrint(print) {
 	let printDiv = document.getElementById('printDiv');
-	printDiv.firstElementChild.textContent = "";
+	
 	// let divRow = document.createElement('div');
 	// divRow.class = 'row';
 	// printDiv.appendChild(divRow);
@@ -329,7 +333,7 @@ function showSinglePrint(print) {
 	button.className = 'btn btn-primary readmoreBtn';
 	button.textContent = 'All info';
 	button.addEventListener('click', (e) =>{
-		if (div6.style.display === 'none') {
+		if (div6.style.display == 'none') {
 			div6.style.display = 'block';
 		} else {
 			div6.style.display = 'none';

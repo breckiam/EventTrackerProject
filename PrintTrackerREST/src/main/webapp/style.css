@@ -1,4 +1,4 @@
-body{margin-top:20px;
+body{margin-top:6vh;
     background:#eee;
     }
     .service-container {
@@ -210,10 +210,18 @@ body{margin-top:20px;
         display: none;
     }
 
+    .navbar {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        height: 6vh;
+    }
+
     #navbarsExample02 {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
     .nav-form{
@@ -227,16 +235,25 @@ body{margin-top:20px;
     }
 
     @media screen and (max-width: 650px) {
+       body {
+           margin-top: 14vh;
+       }
+
+        .navbar {
+        height: 14vh;
+       }
+       
         #navbarsExample02 {
             display: flex;
             flex-direction: column-reverse;
             justify-content: flex-start;
             align-items: flex-start;
             padding-left: 4vw;
+            
         }
 
         .navbar-nav li{
-            padding-left: 1.55vw;
+            padding-left: 1.35vw;
         }
 
     }
