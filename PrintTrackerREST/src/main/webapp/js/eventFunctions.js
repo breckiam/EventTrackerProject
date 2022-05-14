@@ -42,6 +42,11 @@ function init() {
 		e.preventDefault();
 		updatePrint(document.updatePrint.id.value);
 	});
+
+	document.deletePrint.deleteBtn.addEventListener('click', (e) => {
+		e.preventDefault();
+		deletePrint(document.deletePrint.id.value);
+	});
 }
 
 function getPrintById(search) {
@@ -195,5 +200,23 @@ function updatePrint(id) {
 
 	// Pass JSON as request body
 	xhr.send(userPrintJson);
+}
+
+function deletePrint(id) {
+	let xhr = new XMLHttpRequest();
+
+	xhr.open('DELETE', 'api/prints/' + id, true);
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				console.log('Deleted');
+			} else {
+				console.log('Delete failed');
+			}
+		}
+	};
+
+	xhr.send();
 }
 
