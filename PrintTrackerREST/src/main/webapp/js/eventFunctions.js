@@ -1,18 +1,21 @@
 window.addEventListener('load', (e) => {
 	console.log('document loaded');
 	init();
-
+	
 })
 
 
 function init() {
-
 	
+	getAllPrints();
+	let createPrintToggle = document.getElementById('createToggleBtn');
 	
 	document.searchPrints.searchBtn.addEventListener('click', (e) => {
 		e.preventDefault();
 		var search = document.searchPrints.search.value;
 		var printDiv = document.getElementById('printDiv').firstElementChild;
+		printDiv.textContent = '';
+		createPrintToggle.style.display = "block";
 		if (isNaN(search)){
 			console.log(search);
 			getPrintsByKeyword(search);
@@ -47,11 +50,6 @@ function init() {
 		updatePrint(document.updatePrint.id.value);
 	});
 
-	document.deletePrint.deleteBtn.addEventListener('click', (e) => {
-		e.preventDefault();
-		deletePrint(document.deletePrint.id.value);
-	});
-
 	let showmoreBtn = document.getElementsByClassName('readmoreBtn');
 	for (let btn of showmoreBtn) {
 	btn.addEventListener('click', (e) => {
@@ -65,11 +63,35 @@ function init() {
 		}
 	})
 	}
+
 	let showAllButton = document.getElementById('findAllBtn');
 	showAllButton.addEventListener('click', (e) => {
 		e.preventDefault();
+		var updateFormToggle = document.getElementById('updateFormToggle');
+		updateFormToggle.style.display = 'none';
+		var createToggleDiv = document.getElementById('createToggleDiv');
+		createToggleDiv.style.display = 'none';
+		var printDiv = document.getElementById('printDiv').firstElementChild;
+		printDiv.textContent = '';
+		createPrintToggle.style.display = "block";
 		getAllPrints();
-	})
+	});
+
+	let createToggleDiv = document.getElementById('createToggleDiv');
+	var printDiv = document.getElementById('printDiv').firstElementChild;
+	createPrintToggle.addEventListener('click', (e) => {
+		var updateFormToggle = document.getElementById('updateFormToggle');
+		updateFormToggle.style.display = 'none';
+
+		if (createToggleDiv.style.display == 'none' || createToggleDiv.style.display == '') {
+			createToggleDiv.style.display = 'block';
+			createPrintToggle.style.display = "none";
+		} else {
+			createToggleDiv.style.display = 'none'
+			createPrintToggle.style.display = "block";
+		}
+		printDiv.textContent = '';
+	});
 
 	}
 
@@ -137,6 +159,9 @@ function getAllPrints() {
 
 function createPrint() {
 
+	let otherDiv = document.getElementById('everthingElseDiv');
+	let text = document.createElement('h2');
+
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/prints', true);
 
@@ -149,7 +174,9 @@ function createPrint() {
 				console.log(print);
 			}
 			else {
-				console.log('Print was not created');
+				text.textContent = "Failed to update print"
+				text.style.color = 'red';
+				otherDiv.appendChild(text);
 			}
 		}
 	};
@@ -181,7 +208,12 @@ function createPrint() {
 }
 
 function updatePrint(id) {
-
+	let printDiv = document.getElementById('printDiv').firstElementChild;
+	printDiv.textContent = "";
+	let upFormDiv = document.getElementById('createToggleDiv');
+	upFormDiv.style.display = 'none';
+	let otherDiv = document.getElementById('everthingElseDiv');
+	let text = document.createElement('h2');
 	let xhr = new XMLHttpRequest();
 	xhr.open('PUT', 'api/prints/' + id, true);
 
@@ -191,10 +223,21 @@ function updatePrint(id) {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
 				let print = JSON.parse(xhr.responseText);
-				console.log(print);
+				text.textContent = 'Print Succesfully updated';
+				text.style.color = 'green';
+				text.style.textAlign = 'center';
+				text.style.paddingTop = '10vh;'
+				otherDiv.appendChild(text);
+				setTimeout(function(){
+					showSinglePrint(print);
+					otherDiv.textContent = '';
+				}, 2000); 
+				
 			}
 			else {
-				console.log('Print was not created');
+				text.textContent = "Failed to update print"
+				text.style.color = 'red';
+				otherDiv.appendChild(text);
 			}
 		}
 	};
@@ -226,6 +269,10 @@ function updatePrint(id) {
 }
 
 function deletePrint(id) {
+	let printDiv = document.getElementById('printDiv').firstElementChild;
+	printDiv.textContent = "";
+	let otherDiv = document.getElementById('everthingElseDiv');
+	let text = document.createElement('h2');
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('DELETE', 'api/prints/' + id, true);
@@ -233,9 +280,26 @@ function deletePrint(id) {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
-				console.log('Deleted');
+				text.textContent = 'Print Succesfully Deleted';
+				text.style.color = 'green';
+				text.style.textAlign = 'center';
+				text.style.paddingTop = '10vh;'
+				otherDiv.appendChild(text);
+				setTimeout(function(){
+					getAllPrints();
+					otherDiv.textContent = '';
+				}, 2000); 
 			} else {
-				console.log('Delete failed');
+				let otherDiv = document.getElementById('everthingElseDiv');
+				let h3 = document.createElement('h3');
+				h3.textContent = 'Print failed to delete :(';
+				text.style.color = 'green';
+				text.style.textAlign = 'center';
+				otherDiv.appendChild(h3);
+				setTimeout(function(){
+					getAllPrints();
+					otherDiv.textContent = '';
+				}, 2000); 
 			}
 		}
 	};
@@ -292,19 +356,17 @@ function showSinglePrint(print) {
 	title.textContent = print.name;
 	div5.appendChild(title);
 
-	// STL Link
-	let link = document.createElement('a');
-	link.href = print.stlFileUrl;
-	link.className = 'btn btn-outline-primary';
-	link.target = '_blank';
-	link.textContent = 'STL files...';
-	div5.appendChild(link);
-
 	// Hidden info
 	let div6 = document.createElement('div');
 	div6.className = 'allPrintInfo';
 	div5.appendChild(div6);
 
+
+
+	let h3 = document.createElement('h3');
+	h3.textContent = "Printer Settings:"
+	h3.style.textDecoration = 'underline'
+	div6.appendChild(h3);
 	let p1 = document.createElement('p');
 	p1.textContent = "Print Temp: " + print.printTemp;
 	div6.appendChild(p1);
@@ -323,6 +385,46 @@ function showSinglePrint(print) {
 	let p6 = document.createElement('p');
 	p6.textContent = "Creates: " + print.creates;
 	div6.appendChild(p6);
+	let h4 = document.createElement('h4');
+	h4.textContent = 'Print files: ';
+	h4.style.textDecoration = 'underline'
+	div6.appendChild(h4);
+
+	// STL Link
+	let link = document.createElement('a');
+	link.href = print.stlFileUrl;
+	link.className = 'btn btn-outline-primary';
+	link.target = '_blank';
+	link.textContent = 'STL files...';
+	div6.appendChild(link);
+	// Gcode Link
+	if (print.customGcodeUrl != '' || print.customGcodeUrl != null){
+	let link2 = document.createElement('a');
+	link.href2 = print.customGcodeUrl;
+	link.className = 'btn btn-outline-primary';
+	link.target = '_blank';
+	link.textContent = 'STL files...';
+	div6.appendChild(link);
+	}
+	//Update btn
+	let upButton = document.createElement('button');
+	upButton.className = 'btn btn-outline-success';
+	upButton.textContent = 'Update';
+	upButton.addEventListener('click',(e) => {
+		e.preventDefault();
+		updateMe(print);
+	});
+	div6.appendChild(upButton);
+	//Update btn
+	let delButton = document.createElement('button');
+	delButton.className = 'btn btn-outline-danger';
+
+	delButton.textContent = 'Delete';
+	delButton.addEventListener('click', (e) => {
+		e.preventDefault(e);
+		deletePrint(print.id);
+	});		
+	div6.appendChild(delButton);
 
 	// Button Div
 	let div7 = document.createElement('div');
@@ -351,7 +453,7 @@ function showSinglePrint(print) {
 	span2.style = "";
 	div8.appendChild(span2);
 	
-	// First SVG 
+	// Second SVG 
 	let svg2 = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 	svg2.setAttribute('xmlns','http://www.w3.org/2000/svg');
 	svg2.setAttribute('viewBox','0 0 24 24');
@@ -359,7 +461,7 @@ function showSinglePrint(print) {
 	svg2.setAttribute('class', 'bi bi-boxes');
 	svg2.setAttribute('enable-background', 'new 0 0 24 24');
 	svg2.setAttribute('style', '');
-	// First SVG path
+	// Second SVG path
 	let path2 = document.createElementNS('http://www.w3.org/2000/svg','path');
 	path2.setAttribute('class', 'uim-quaternary');
 	path2.setAttribute('d', 'M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z');
@@ -377,3 +479,29 @@ function displayAllPrints(prints) {
 	}
 }
 
+function updateMe(print) {
+	let printDiv = document.getElementById('printDiv').firstElementChild;
+	printDiv.textContent = "";
+	let updateToggle = document.getElementById('updateFormToggle');
+	updateToggle.style.display = 'block';
+	let upForm = document.getElementById('updateForm');
+	let idInput = document.createElement('input');
+	idInput.type = "hidden";
+	idInput.value = print.id;
+	idInput.name = "id";
+	upForm.appendChild(idInput);
+	console.log(print.stlFileUrl);
+	upForm.printName.value = print.name;
+	upForm.stlUrl.value = print.stlFileUrl;
+	upForm.gcodeUrl.value = print.customGcodeUrl;
+	upForm.printerName.value = print.printerName;
+	upForm.printTemp.value = print.printTemp;
+	upForm.printSpeed.value = print.printSpeed;
+	upForm.printQuality.value = print.printQuality;
+	upForm.adhesionLayer.value = print.adhesionLayer;
+	upForm.supports.value = print.supports;
+	upForm.imageUrl.value = print.imageUrl;
+	upForm.creates.value = print.creates;
+	upForm.createDate.value = print.lastDateCreated;
+
+}

@@ -257,3 +257,12 @@ body{margin-top:6vh;
         }
 
     }
+
+    #createToggleDiv {
+        display: none;
+    }
+
+    #updateFormToggle {
+        display: none;
+    }
+

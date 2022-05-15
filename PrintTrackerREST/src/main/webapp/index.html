@@ -16,7 +16,7 @@
               <button id="findAllBtn" class="btn btn-primary">Show All Prints</button>
             </li>
             <li class="nav-item active">
-                <button id="findAllBtn" class="btn btn-primary">Create print</button>
+                <button id="createToggleBtn" class="btn btn-primary">Create print</button>
               </li>
           </ul>
             <form name="searchPrints" class="form-inline my-2 my-md-0 nav-form">
@@ -31,71 +31,78 @@
         <div id="printDiv">
             <div class="row"></div>
         </div>
-        <div id="errorDiv"></div>
+        <div id="everthingElseDiv">
+            <div class="g-col-6">
+    
+                <div id="createToggleDiv">
+                    <h3>Create:</h3>
+                    <div id="errorDiv"></div>
+                  
+                <form name="createPrint">
+                    <input type="text" placeholder="name" name="printName"><br>
+                    <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
+                    <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
+                    <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
+                    <input type="text" placeholder="PLA" name="filamentType"><br>
+                    <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
+                    <input type="number" step="0.01" placeholder="°C" name="printTemp"><br>
+                    <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
+                    <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
+                    <input type="text"  placeholder="skirt" name="adhesionLayer">
+                    <br>
+                    <label for="supports">Supports?</label>
+                    <input type="radio" name="supports" value="true" id="yes">
+                    <label for="yes">yes </label>
+                    <input type="radio" name="supports" value="false" id="no" checked>
+                    <label for="no">no </label>
+                    <br>
+                    <input type="text" placeholder="Image url" name="imageUrl"><br>
+                    <input type="number" placeholder="creates" name="creates"><br>
+                    <input type="date" name="createDate"><br>
+                    <button name="createBtn" >Create</button>
+                </form>
+                </div>
+            </div>
+
+            <div id="updateFormToggle">
+                <h3>Update Print: </h3>
+                <form name="updatePrint" id="updateForm">
+                    <input type="text"  name="printName" value="print name" placeholder="printName"><br>
+                    <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
+                    <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
+                    <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
+                    <input type="text" placeholder="PLA" name="filamentType"><br>
+                    <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
+                    <input type="number" step="0.01" placeholder="C" name="printTemp"><br>
+                    <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
+                    <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
+                    <input type="text"  placeholder="skirt" name="adhesionLayer">
+                    <br>
+                    <label for="supports">Supports?</label>
+                    <input type="radio" name="supports" value="true" id="yes">
+                    <label for="yes">yes </label>
+                    <input type="radio" name="supports" value="false" id="no" checked>
+                    <label for="no">no </label>
+                    <br>
+                    <input type="text" placeholder="Image url" name="imageUrl"><br>
+                    <input type="number" placeholder="creates" name="creates"><br>
+                    <input type="date" name="createDate"><br>
+                    <button name="updateBtn">update</button>
+                </form>
+                </div>
+
+        </div>
     
 
 
 
     <br><br>
-    <div class="g-col-6">
-    <h3>Create:</h3>
-    <div id="errorDiv"></div>
-    <form name="createPrint">
-        <input type="text" placeholder="name" name="printName"><br>
-        <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
-        <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
-        <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
-        <input type="text" placeholder="PLA" name="filamentType"><br>
-        <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
-        <input type="number" step="0.01" placeholder="°C" name="printTemp"><br>
-        <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
-        <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
-        <input type="text"  placeholder="skirt" name="adhesionLayer">
-        <br>
-        <label for="supports">Supports?</label>
-        <input type="radio" name="supports" value="true" id="yes">
-        <label for="yes">yes </label>
-        <input type="radio" name="supports" value="false" id="no" checked>
-        <label for="no">no </label>
-        <br>
-        <input type="text" placeholder="Image url" name="imageUrl"><br>
-        <input type="number" placeholder="creates" name="creates"><br>
-        <input type="date" name="createDate"><br>
-        <button name="createBtn">Create</button>
-    </form>
-    </div>
 
     <br><br>
-    <form name="updatePrint">
-        <input type="number" placeholder="id" name="id"><br>
-        <input type="text" placeholder="name" name="printName"><br>
-        <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
-        <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
-        <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
-        <input type="text" placeholder="PLA" name="filamentType"><br>
-        <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
-        <input type="number" step="0.01" placeholder="°C" name="printTemp"><br>
-        <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
-        <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
-        <input type="text"  placeholder="skirt" name="adhesionLayer">
-        <br>
-        <label for="supports">Supports?</label>
-        <input type="radio" name="supports" value="true" id="yes">
-        <label for="yes">yes </label>
-        <input type="radio" name="supports" value="false" id="no" checked>
-        <label for="no">no </label>
-        <br>
-        <input type="text" placeholder="Image url" name="imageUrl"><br>
-        <input type="number" placeholder="creates" name="creates"><br>
-        <input type="date" name="createDate"><br>
-        <button name="updateBtn">update</button>
-    </form>
+
 
     <br><br>
-    <form name="deletePrint"> 
-        <input type="number" name="id">
-        <button name="deleteBtn">Delete</button>
-    </form>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
