@@ -20,12 +20,15 @@
               </li>
           </ul>
             <form name="searchPrints" class="form-inline my-2 my-md-0 nav-form">
-                <input type="text" placeholder="search" name="search" class="form-control">
+                <input type="text" placeholder="id or keyword" name="search" class="form-control">
                 <button name="searchBtn" class="btn btn-primary">Search</button>
             </form>
         </div>
       </nav>
-    <h1>3D Prints</h1>
+
+      <div id="home-title" class="container">
+          <h1>3D Prints</h1> 
+      </div>
 	
    
         <div id="printDiv">
@@ -34,60 +37,138 @@
         <div id="everthingElseDiv">
             <div class="g-col-6">
     
-                <div id="createToggleDiv">
+                <div id="createToggleDiv" class="container">
                     <h3>Create:</h3>
                     <div id="errorDiv"></div>
                   
-                <form name="createPrint">
-                    <input type="text" placeholder="name" name="printName"><br>
-                    <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
-                    <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
-                    <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
-                    <input type="text" placeholder="PLA" name="filamentType"><br>
-                    <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
-                    <input type="number" step="0.01" placeholder="°C" name="printTemp"><br>
-                    <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
-                    <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
-                    <input type="text"  placeholder="skirt" name="adhesionLayer">
-                    <br>
-                    <label for="supports">Supports?</label>
-                    <input type="radio" name="supports" value="true" id="yes">
-                    <label for="yes">yes </label>
-                    <input type="radio" name="supports" value="false" id="no" checked>
-                    <label for="no">no </label>
-                    <br>
-                    <input type="text" placeholder="Image url" name="imageUrl"><br>
-                    <input type="number" placeholder="creates" name="creates"><br>
-                    <input type="date" name="createDate"><br>
-                    <button name="createBtn" >Create</button>
+                <form name="createPrint" class="row g-3">
+                    <div class="col-md-12">
+                        <label for="printName" class="form-label"> Print name:</label>
+                        <input type="text" placeholder="name" name="printName" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="stlUrl" class="form-label"> STL URL:</label>
+                        <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="gcodeUrl" class="form-label"> G-Code URL:</label>
+                        <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="printerName" class="form-label"> Printer name:</label>
+                        <input type="text" placeholder="Ender 3 V2" name="printerName" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="filamentType" class="form-label"> Filament type:</label>
+                        <input type="text" placeholder="PLA" name="filamentType" class="form-control" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="filamentBrand" class="form-label"> Filament brand:</label>
+                        <input type="text" placeholder="Hatch-Box" name="filamentBrand" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printTemp" class="form-label"> Print temp:</label>
+                        <input type="number" step="0.01" placeholder="°C" name="printTemp" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printSpeed" class="form-label"> Print speed:</label>
+                        <input type="number" step="0.01" placeholder="mm" name="printSpeed" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printQuality" class="form-label"> Print quality:</label>
+                        <input type="number" step="0.01" placeholder="mm" name="printQuality" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="adhesionLayer" class="form-label"> Adhesion layer:</label>
+                        <input type="text"  placeholder="skirt" name="adhesionLayer" class="form-control">
+                    </div>
+                        <div class="col-md-6">
+                        <label for="supports" class="form-check-label">Supports?</label>
+                        <input type="radio" name="supports" value="true" id="yes" class="form-check-input">
+                        <label for="yes" class="form-check-label"> yes </label>
+                        <input type="radio" name="supports" value="false" id="no" class="form-check-input" checked>
+                        <label for="no" class="form-check-label"> no </label>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="imageUrl" class="form-label"> Image url:</label>
+                        <input type="text" placeholder="Image url" name="imageUrl" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="creates" class="form-label"> creates:</label>
+                        <input type="number" placeholder="creates" name="creates" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="createDate" class="form-label"> Create date:</label>
+                        <input type="date" name="createDate" class="form-control">
+                    </div>
+                    <button name="createBtn" class="btn btn-primary">Create</button>
                 </form>
                 </div>
             </div>
 
-            <div id="updateFormToggle">
+            <div id="updateFormToggle" class="container">
                 <h3>Update Print: </h3>
-                <form name="updatePrint" id="updateForm">
-                    <input type="text"  name="printName" value="print name" placeholder="printName"><br>
-                    <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl"><br>
-                    <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl"><br>
-                    <input type="text" placeholder="Ender 3 V2" name="printerName"><br>
-                    <input type="text" placeholder="PLA" name="filamentType"><br>
-                    <input type="text" placeholder="Hatch-Box" name="filamentBrand"><br>
-                    <input type="number" step="0.01" placeholder="C" name="printTemp"><br>
-                    <input type="number" step="0.01" placeholder="mm" name="printSpeed"><br>
-                    <input type="number" step="0.01" placeholder="mm" name="printQuality"><br>
-                    <input type="text"  placeholder="skirt" name="adhesionLayer">
-                    <br>
-                    <label for="supports">Supports?</label>
-                    <input type="radio" name="supports" value="true" id="yes">
-                    <label for="yes">yes </label>
-                    <input type="radio" name="supports" value="false" id="no" checked>
-                    <label for="no">no </label>
-                    <br>
-                    <input type="text" placeholder="Image url" name="imageUrl"><br>
-                    <input type="number" placeholder="creates" name="creates"><br>
-                    <input type="date" name="createDate"><br>
-                    <button name="updateBtn">update</button>
+                <form name="updatePrint" id="updateForm" class="row g-3">
+                    <div class="col-md-12">
+                        <label for="printName" class="form-label"> Print name:</label>
+                        <input type="text" placeholder="name" name="printName" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="stlUrl" class="form-label"> STL URL:</label>
+                        <input type="text" placeholder="https://www.thingiverse.com/thing:5367239" name="stlUrl" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="gcodeUrl" class="form-label"> G-Code URL:</label>
+                        <input type="text" placeholder="https://www.dropbox.com/login" name="gcodeUrl" class="form-control">
+                    </div>
+                    <div class="col-md-12">
+                        <label for="printerName" class="form-label"> Printer name:</label>
+                        <input type="text" placeholder="Ender 3 V2" name="printerName" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="filamentType" class="form-label"> Filament type:</label>
+                        <input type="text" placeholder="PLA" name="filamentType" class="form-control" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="filamentBrand" class="form-label"> Filament brand:</label>
+                        <input type="text" placeholder="Hatch-Box" name="filamentBrand" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printTemp" class="form-label"> Print temp:</label>
+                        <input type="number" step="0.01" placeholder="°C" name="printTemp" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printSpeed" class="form-label"> Print speed:</label>
+                        <input type="number" step="0.01" placeholder="mm" name="printSpeed" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="printQuality" class="form-label"> Print quality:</label>
+                        <input type="number" step="0.01" placeholder="mm" name="printQuality" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="adhesionLayer" class="form-label"> Adhesion layer:</label>
+                        <input type="text"  placeholder="skirt" name="adhesionLayer" class="form-control">
+                    </div>
+                        <div class="col-md-6">
+                        <label for="supports" class="form-check-label">Supports?</label>
+                        <input type="radio" name="supports" value="true" id="yes" class="form-check-input">
+                        <label for="yes" class="form-check-label"> yes </label>
+                        <input type="radio" name="supports" value="false" id="no" class="form-check-input" checked>
+                        <label for="no" class="form-check-label"> no </label>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="imageUrl" class="form-label"> Image url:</label>
+                        <input type="text" placeholder="Image url" name="imageUrl" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="creates" class="form-label"> creates:</label>
+                        <input type="number" placeholder="creates" name="creates" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="createDate" class="form-label"> Create date:</label>
+                        <input type="date" name="createDate" class="form-control">
+                    </div>
+                    <button name="updateBtn" class="btn btn-primary">Updat Me :)</button>
                 </form>
                 </div>
 

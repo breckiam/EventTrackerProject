@@ -138,7 +138,8 @@ function getPrintsByKeyword(search) {
 	xhr.send();
 }
 
-function getAllPrints() { 
+function getAllPrints() {
+	let titleDiv = document.getElementById('home-title');  
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('GET', 'api/prints', true);
@@ -147,9 +148,20 @@ function getAllPrints() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let prints = JSON.parse(xhr.responseText);
+				while (titleDiv.firstElementChild) {
+					titleDiv.removeChild(titleDiv.firstElementChild);
+				}
+				let h1 = document.createElement('h1');
+				h1.textContent = '3D Prints';
+				let h5 = document.createElement('h5');
+				h5.textContent = 'Total stored: ' + prints.length;
+				titleDiv.appendChild(h1);
+				titleDiv.appendChild(h5); 
 				displayAllPrints(prints);
 			} else {
-				console.log('No prints found');
+				let h5 = document.createElement('h5');
+				h5.textContent = 'No prints Stored... Create a new print :)';
+				titleDiv.appendChild(h5);
 			}
 		}
 	};
@@ -271,6 +283,8 @@ function updatePrint(id) {
 function deletePrint(id) {
 	let printDiv = document.getElementById('printDiv').firstElementChild;
 	printDiv.textContent = "";
+	let titleDiv = document.getElementById('home-title');
+	titleDiv.textContent = '';
 	let otherDiv = document.getElementById('everthingElseDiv');
 	let text = document.createElement('h2');
 	let xhr = new XMLHttpRequest();
