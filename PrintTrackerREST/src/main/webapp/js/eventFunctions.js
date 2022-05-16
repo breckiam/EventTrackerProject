@@ -80,7 +80,9 @@ function init() {
 	let createToggleDiv = document.getElementById('createToggleDiv');
 	var printDiv = document.getElementById('printDiv').firstElementChild;
 	createPrintToggle.addEventListener('click', (e) => {
-		var updateFormToggle = document.getElementById('updateFormToggle');
+		let homeTitle = document.getElementById('home-title');
+		homeTitle.textContent = ''; 
+		let updateFormToggle = document.getElementById('updateFormToggle');
 		updateFormToggle.style.display = 'none';
 
 		if (createToggleDiv.style.display == 'none' || createToggleDiv.style.display == '') {
@@ -97,7 +99,9 @@ function init() {
 
 
 function getPrintById(search) {
-	console.log("in getPrintById");
+	let printDiv = document.getElementById('printDiv').firstElementChild;
+	printDiv.textContent = "";
+
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('GET', 'api/prints/' + search, true);
@@ -106,11 +110,18 @@ function getPrintById(search) {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let print = JSON.parse(xhr.responseText);
-				console.log(print);
 				showSinglePrint(print);
 				
 			} else {
-				console.log('no print found');
+				let homeTitle = document.getElementById('home-title');
+				homeTitle.textContent = ''; 
+				let h3 = document.createElement('h3');
+				h3.textContent = 'Nothing found under that id... try another'
+				printDiv.appendChild(h3);
+				setTimeout(function(){
+					getAllPrints();
+					printDiv.textContent = '';
+				}, 2000); 
 			}
 		}
 	};
@@ -120,6 +131,10 @@ function getPrintById(search) {
 }
 
 function getPrintsByKeyword(search) {
+	let printDiv = document.getElementById('printDiv').firstElementChild;
+	printDiv.textContent = "";
+
+
 	let xhr = new XMLHttpRequest();
 
 	xhr.open('GET', 'api/prints/search/' + search, true);
@@ -130,7 +145,15 @@ function getPrintsByKeyword(search) {
 				let prints = JSON.parse(xhr.responseText);
 				displayAllPrints(prints);
 			} else {
-				console.log('No print found');
+				let homeTitle = document.getElementById('home-title');
+				homeTitle.textContent = ''; 
+				let h3 = document.createElement('h3');
+				h3.textContent = 'Nothing found under that keyword... try another'
+				printDiv.appendChild(h3);
+				setTimeout(function(){
+					getAllPrints();
+					printDiv.textContent = '';
+				}, 2000); 
 			}
 		}
 	};
@@ -171,7 +194,8 @@ function getAllPrints() {
 
 function createPrint() {
 
-	let otherDiv = document.getElementById('everthingElseDiv');
+	let createDiv = document.getElementById('createToggleDiv');
+	createDiv.style.display = 'none';
 	let text = document.createElement('h2');
 
 	let xhr = new XMLHttpRequest();
@@ -183,12 +207,16 @@ function createPrint() {
 		if (xhr.readyState === 4) {
 			if (xhr.status == 200 || xhr.status == 201) { // Ok or Created
 				let print = JSON.parse(xhr.responseText);
-				console.log(print);
+				showSinglePrint(print);
 			}
 			else {
 				text.textContent = "Failed to update print"
 				text.style.color = 'red';
 				otherDiv.appendChild(text);
+				setTimeout(function(){
+					showSinglePrint(print);
+					otherDiv.removeChild(otherDiv.lastElementChild)
+				}, 2000); s
 			}
 		}
 	};
@@ -222,7 +250,7 @@ function createPrint() {
 function updatePrint(id) {
 	let printDiv = document.getElementById('printDiv').firstElementChild;
 	printDiv.textContent = "";
-	let upFormDiv = document.getElementById('createToggleDiv');
+	let upFormDiv = document.getElementById('updateFormToggle');
 	upFormDiv.style.display = 'none';
 	let otherDiv = document.getElementById('everthingElseDiv');
 	let text = document.createElement('h2');
@@ -242,7 +270,7 @@ function updatePrint(id) {
 				otherDiv.appendChild(text);
 				setTimeout(function(){
 					showSinglePrint(print);
-					otherDiv.textContent = '';
+					otherDiv.removeChild(otherDiv.lastElementChild)
 				}, 2000); 
 				
 			}
@@ -250,6 +278,10 @@ function updatePrint(id) {
 				text.textContent = "Failed to update print"
 				text.style.color = 'red';
 				otherDiv.appendChild(text);
+				setTimeout(function(){
+					showSinglePrint(print);
+					otherDiv.removeChild(otherDiv.lastElementChild)
+				}, 2000);
 			}
 		}
 	};
@@ -496,6 +528,8 @@ function displayAllPrints(prints) {
 function updateMe(print) {
 	let printDiv = document.getElementById('printDiv').firstElementChild;
 	printDiv.textContent = "";
+	let homeTitle = document.getElementById('home-title');
+	homeTitle.textContent = ''; 
 	let updateToggle = document.getElementById('updateFormToggle');
 	updateToggle.style.display = 'block';
 	let upForm = document.getElementById('updateForm');

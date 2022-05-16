@@ -1,4 +1,4 @@
-body{margin-top:6vh;
+body{margin-top:90px;
     background:#eee;
     }
     .service-container {
@@ -215,7 +215,7 @@ body{margin-top:6vh;
         top: 0px;
         left: 0px;
         right: 0px;
-        height: 6vh;
+        height: 70px;
     }
 
     #navbarsExample02 {
@@ -236,11 +236,11 @@ body{margin-top:6vh;
 
     @media screen and (max-width: 650px) {
        body {
-           margin-top: 14vh;
+           margin-top: 140px;
        }
 
         .navbar {
-        height: 14vh;
+        height: 120px;
        }
        
         #navbarsExample02 {

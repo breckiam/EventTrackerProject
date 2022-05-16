@@ -9,5 +9,5 @@ import com.skilldistillery.entities.ThreeDPrint;
 
 public interface ThreeDPrintRepository extends JpaRepository<ThreeDPrint, Integer> {
 
-	List<ThreeDPrint> findByNameLike(@PathVariable("keyword") String keyword);
+	List<ThreeDPrint> findByName( String keyword);
 }

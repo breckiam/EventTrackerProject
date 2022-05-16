@@ -33,11 +33,12 @@ public class ThreeDPrintController {
 		return tdpList;
 	}
 	
-	@GetMapping("prints/search/{keyword}")
-	public List<ThreeDPrint> searchByKeyword(@PathVariable String keyword, HttpServletResponse resp) {
-		List<ThreeDPrint>  tdpList = serv.findByNameKeyword(keyword);
-		if (tdpList.isEmpty()) {
+	@GetMapping("prints/search/{searchWord}")
+	public List<ThreeDPrint> searchByKeyword(@PathVariable String searchWord, HttpServletResponse resp) {
+		List<ThreeDPrint>  tdpList = serv.getByNameKeyword(searchWord);
+		if (tdpList.size() <= 0) {
 			resp.setStatus(404);
+			tdpList = null;
 		}
 		return tdpList;
 	}

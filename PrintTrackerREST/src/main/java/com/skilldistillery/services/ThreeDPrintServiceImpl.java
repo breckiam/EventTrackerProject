@@ -21,8 +21,8 @@ public class ThreeDPrintServiceImpl implements ThreeDPrintService {
 	}
 	
 	@Override
-	public List<ThreeDPrint> findByNameKeyword(String keyword) {
-		return repo.findByNameLike(keyword);
+	public List<ThreeDPrint> getByNameKeyword(String keyword) {
+		return repo.findByName(keyword);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import com.skilldistillery.entities.ThreeDPrint;
 
 public interface ThreeDPrintService {
 	List<ThreeDPrint> index();
-	List<ThreeDPrint> findByNameKeyword(String keyword);
+	List<ThreeDPrint> getByNameKeyword(String keyword);
 	ThreeDPrint findById(int id);
 	ThreeDPrint updatePrint(int id, ThreeDPrint print);
 	boolean deletePrint(int id); 
