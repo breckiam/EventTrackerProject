@@ -483,8 +483,12 @@ function showSinglePrint(print) {
 	button.addEventListener('click', (e) =>{
 		if (div6.style.display == 'none') {
 			div6.style.display = 'block';
+			button.textContent = 'X';
+			button.className = 'btn btn-danger';
 		} else {
 			div6.style.display = 'none';
+			button.textContent = 'All info';
+			button.className = 'btn btn-primary';
 		}
 	})
 	div7.appendChild(button);
