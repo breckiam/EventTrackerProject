@@ -1,3 +1,4 @@
+import { AppToastService, ToastInfo } from './../../services/app-toast.service';
 import { ThreeDPrint } from './../../models/three-dprint';
 
 import { Component, OnInit } from '@angular/core';
@@ -10,12 +11,12 @@ import { ThreeDService } from 'src/app/services/three-d.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private threeDPrintSvc: ThreeDService) { }
+  constructor(private threeDPrintSvc: ThreeDService, private toastSvc: AppToastService) { }
 
   ngOnInit(): void {
     this.loadTodos();
   }
-
+toast: ToastInfo | null= null;
 threeDPrints: ThreeDPrint[] = [];
 
 loadTodos() {
@@ -23,6 +24,14 @@ loadTodos() {
     success => this.threeDPrints = success,
     err => console.log('Ovservable got and error' + err)
   );
+}
+
+getTosts() {
+  return this.toastSvc.toasts;
+}
+
+removeToast(toast: ToastInfo) {
+  this.toastSvc.remove(toast);
 }
 
 setPrintImage(print: ThreeDPrint) {

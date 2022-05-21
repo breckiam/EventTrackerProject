@@ -3,7 +3,13 @@
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 
-
+<ngb-toast
+  class="bg-success text-light position-fixed top-0 end-0 p-3"
+  style="z-index: 1200;"
+  *ngFor="let toast of getTosts()"
+  [header]="toast.header" [autohide]="true" [delay]="toast.delay || 3000"
+  (hiddden)="removeToast(toast)"
+>{{toast.body}}</ngb-toast>
 
 
 <section id="team" class="team_member section-padding">

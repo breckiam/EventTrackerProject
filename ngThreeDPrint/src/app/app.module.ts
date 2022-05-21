@@ -1,3 +1,12 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatRippleModule} from '@angular/material/core';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ThreeDService } from './services/three-d.service';
 import { NgModule } from '@angular/core';
@@ -9,19 +18,29 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SinglePrintComponent } from './components/single-print/single-print.component';
+import { UpdateComponent } from './components/update/update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SinglePrintComponent
+    SinglePrintComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule,
+    MatCardModule,
+    MatGridListModule,
+    MatRippleModule,
+    MatTableModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [ThreeDService],
   bootstrap: [AppComponent]

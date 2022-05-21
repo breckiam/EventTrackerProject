@@ -1,2 +1,79 @@
-<p>single-print works!</p>
-<h1>{{threeDPrint?.name}}</h1>
+
+
+<div *ngIf="threeDPrint" class="container">
+  <h1 class="">{{threeDPrint.name}}</h1>
+  <img [src]="setPrintImage(threeDPrint)" class="img-fluid img-thumbnail">
+  <div class="button-single">
+      <button mat-raised-button (click)="displaySelector('print')">Print info</button>
+
+      <button mat-raised-button (click)="displaySelector('filament')">Filament Info</button>
+
+      <button mat-raised-button (click)="displaySelector('filament')">Edit</button>
+
+      <button mat-raised-button color="warn" (click)="removePrint(threeDPrint.id, 'Print was successfully deleted 😀 ')">Delete</button>
+    </div>
+
+  <div>
+    <mat-grid-list cols="1" rowHeight="" >
+      <mat-grid-tile *ngIf=" printDetails" >
+
+        <mat-card class="card-style">
+          <mat-card-actions>
+            <button mat-raised-button color="warn" (click)=" printDetails = ! printDetails">X</button>
+          </mat-card-actions>
+          <div class="info-div">
+
+            <mat-card-title>Printer Settings</mat-card-title>
+            <mat-card-subtitle>{{threeDPrint.printerName}}</mat-card-subtitle>
+
+            <mat-card-content>
+              <table mat-table [dataSource]="getPrinterInfo(threeDPrint)" class="mat-elevation-z8">
+                <ng-container matColumnDef="title">
+                  <th></th>
+                  <td mat-cell *matCellDef="let element" style="padding-right: 20px;"> {{element.title}} </td>
+                </ng-container>
+                <ng-container matColumnDef="value">
+                  <th></th>
+                  <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+                </ng-container>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-card-content>
+          </div>
+
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile *ngIf="filamentDetails">
+
+        <mat-card class="card-style">
+          <mat-card-actions>
+            <button mat-raised-button color="warn" (click)="filamentDetails = !filamentDetails">X</button>
+          </mat-card-actions>
+          <div class="info-div">
+            <mat-card-title>Filament</mat-card-title>
+            <mat-card-subtitle>Filament info</mat-card-subtitle>
+
+            <mat-card-content>
+              <table mat-table [dataSource]="getFilamentInfo(threeDPrint)" class="mat-elevation-z8" >
+                <ng-container matColumnDef="title">
+                  <th></th>
+                  <td mat-cell *matCellDef="let element" style="padding-right: 20px;"> {{element.title}} </td>
+                </ng-container>
+                <ng-container matColumnDef="value">
+                  <th></th>
+                  <td mat-cell *matCellDef="let element"> {{element.value}} </td>
+                </ng-container>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </mat-card-content>
+          </div>
+
+        </mat-card>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+    </div>
+  </div>
+
+
