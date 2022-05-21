@@ -24,4 +24,12 @@ loadTodos() {
   );
 }
 
+setPrintImage(print: ThreeDPrint) {
+  if (print.printImageUrl) {
+    return print.printImageUrl;
+  } else {
+    return 'https://images.unsplash.com/photo-1622737133809-d95047b9e673?'
+  }
+}
+
 }

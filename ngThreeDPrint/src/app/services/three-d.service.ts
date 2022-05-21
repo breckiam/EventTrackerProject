@@ -15,7 +15,7 @@ export class ThreeDService {
   constructor(private http: HttpClient) { }
 
   index() {
-    return this.http.get<ThreeDPrint[]>(this.url + '?sorted=true')
+    return this.http.get<ThreeDPrint[]>(this.url)
     .pipe(
       catchError((err: any) => {
         console.log(err);
@@ -23,7 +23,6 @@ export class ThreeDService {
       })
       );
     }
-
 
     create(newThreeDPrint: ThreeDPrint) {
       return this.http.post<ThreeDPrint>(this.url, newThreeDPrint)
