@@ -35,7 +35,7 @@ export class SinglePrintComponent implements OnInit {
         }
       },
       err => this.router.navigateByUrl('/notFound')
-    );
+    )
   }
 
 }
