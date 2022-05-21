@@ -1,6 +1,7 @@
 import { ThreeDPrint } from './../../models/three-dprint';
-import { ThreeDService } from './../../services/three-d.service';
+
 import { Component, OnInit } from '@angular/core';
+import { ThreeDService } from 'src/app/services/three-d.service';
 
 @Component({
   selector: 'app-home',

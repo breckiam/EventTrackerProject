@@ -2,6 +2,10 @@
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
+
+
+
+
 <section id="team" class="team_member section-padding">
 	<div class="container">
 		<div class="section-title text-center">
@@ -10,7 +14,7 @@
 		</div>
 		<div class="row text-center" >
 			<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.1s" data-wow-offset="0" *ngFor="let print of threeDPrints">
-				<div class="our-team">
+				<div class="our-team card">
 					<div class="team_img">
 						<img [src]="setPrintImage(print)" alt="team-image">
 						<ul class="social">
