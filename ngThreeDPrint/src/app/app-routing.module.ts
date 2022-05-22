@@ -7,7 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: '', component: HomeComponent},
-  {path: 'update', component: UpdateComponent},
+  {path: 'create', component: UpdateComponent},
   {path: 'prints/:id', component: SinglePrintComponent}
 
 ];

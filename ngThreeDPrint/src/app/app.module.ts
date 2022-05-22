@@ -2,10 +2,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ThreeDService } from './services/three-d.service';
@@ -40,7 +41,9 @@ import { UpdateComponent } from './components/update/update.component';
     MatRippleModule,
     MatTableModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ThreeDService],
   bootstrap: [AppComponent]

@@ -1,20 +1,23 @@
 
 
 <div *ngIf="threeDPrint" class="container">
+
   <h1 class="">{{threeDPrint.name}}</h1>
+  <mat-card>
   <img [src]="setPrintImage(threeDPrint)" class="img-fluid img-thumbnail">
-  <div class="button-single">
+    <div class="button-single">
       <button mat-raised-button (click)="displaySelector('print')">Print info</button>
 
       <button mat-raised-button (click)="displaySelector('filament')">Filament Info</button>
 
-      <button mat-raised-button (click)="displaySelector('filament')">Edit</button>
+      <button mat-raised-button (click)="displaySelector('edit')">Edit</button>
 
       <button mat-raised-button color="warn" (click)="removePrint(threeDPrint.id, 'Print was successfully deleted 😀 ')">Delete</button>
     </div>
+  </mat-card>
 
   <div>
-    <mat-grid-list cols="1" rowHeight="" >
+    <mat-grid-list cols="1" *ngIf="printDetails || filamentDetails">
       <mat-grid-tile *ngIf=" printDetails" >
 
         <mat-card class="card-style">
@@ -73,6 +76,10 @@
       </mat-grid-tile>
 
     </mat-grid-list>
+
+    <div *ngIf="edit" style="padding-top: 10px;">
+      <app-update></app-update>
+    </div>
     </div>
   </div>
 

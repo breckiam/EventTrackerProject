@@ -1,13 +1,97 @@
-<p>update works!</p>
 
-<mat-card>
-<mat-card-content>
-<form class="example-form">
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Print name</mat-label>
-    <input matInput type="text" name="name" [(ngModel)]="threeDPrint.name">
-  </mat-form-field>
-</form>
+<div class="container">
+  <mat-card>
 
-</mat-card-content>
-</mat-card>
+    <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Print name</mat-label>
+        <input matInput type="text" name="name" [(ngModel)]="threeDPrint.name">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>STL URL</mat-label>
+        <input matInput type="text" name="StlFileUrl" [(ngModel)]="threeDPrint.stlFileUrl">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Custom Gcode URL</mat-label>
+        <input matInput type="text" name="customGcodeUrl" [(ngModel)]="threeDPrint.customGcodeUrl">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Printer name</mat-label>
+        <input matInput type="text" name="printerName" [(ngModel)]="threeDPrint.printerName">
+      </mat-form-field>
+
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Filament type</mat-label>
+              <input matInput type="text" name="filamentType" [(ngModel)]="threeDPrint.filamentType">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Filament brand</mat-label>
+              <input matInput type="text" name="filamentBrand" [(ngModel)]="threeDPrint.filamentBrand">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Print Temp</mat-label>
+              <input matInput type="number" step="0.01" name="printTemp" [(ngModel)]="threeDPrint.printTemp">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Print speed</mat-label>
+              <input matInput type="number" step="0.01" name="printSpeed" [(ngModel)]="threeDPrint.printSpeed">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Print Quality</mat-label>
+              <input matInput type="number" step="0.01" name="printQuality" [(ngModel)]="threeDPrint.printQuality">
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Creates</mat-label>
+              <input matInput type="number" name="creates" [(ngModel)]="threeDPrint.creates">
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Adhesion Layer</mat-label>
+        <input matInput type="text" name="adhesionLayer" [(ngModel)]="threeDPrint.adhesionLayer">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Print Image URL</mat-label>
+        <input matInput type="text" name="printImageUrl" [(ngModel)]="threeDPrint.printImageUrl">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="example-form-field">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="datepicker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+      </mat-form-field>
+      <button *ngIf="!createMode" mat-raised-button color="primary" (click)="update(threeDPrint)">Update</button>
+      <button *ngIf="createMode" mat-raised-button color="primary" (click)="addPrint(threeDPrint)">Create</button>
+    </form>
+  </mat-card>
+</div>

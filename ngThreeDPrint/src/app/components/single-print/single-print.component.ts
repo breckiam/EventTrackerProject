@@ -1,4 +1,4 @@
-import { AppToastService } from './../../services/app-toast.service';
+import { AppToastService, ToastInfo } from './../../services/app-toast.service';
 import { MatRippleModule } from '@angular/material/core';
 import { ThreeDPrint } from './../../models/three-dprint';
 import { Component, OnInit } from '@angular/core';
@@ -29,8 +29,9 @@ export class SinglePrintComponent implements OnInit {
 
   threeDPrint: ThreeDPrint | null = null;
   displayedColumns: string[] = ['title', 'value'];
-  printDetails: boolean = false;
+  printDetails: boolean = true;
   filamentDetails: boolean = false;
+  edit: boolean = false;
 
 
 
@@ -38,9 +39,15 @@ export class SinglePrintComponent implements OnInit {
     if (display === 'print') {
       this.printDetails = true;
       this.filamentDetails = false;
-    } else {
+      this.edit = false;
+    } else if (display === 'edit') {
+      this.edit = true;
       this.printDetails = false;
+      this.filamentDetails = false;
+    } else {
       this.filamentDetails = true;
+      this.printDetails = false;
+      this.edit = false;
     }
 
   }
@@ -114,6 +121,12 @@ export class SinglePrintComponent implements OnInit {
         }
       );
   }
+
+  update(print: ThreeDPrint | null) {
+    console.log(print);
+  }
+
+
 
 
 

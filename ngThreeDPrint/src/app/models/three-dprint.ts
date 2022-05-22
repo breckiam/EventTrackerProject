@@ -1,7 +1,7 @@
 export class ThreeDPrint {
   id: number;
   name: string | null;
-  StlFileUrl: string | null;
+  stlFileUrl: string | null;
   customGcodeUrl: string | null;
   printerName: string | null;
   filamentType: string | null;
@@ -18,7 +18,7 @@ export class ThreeDPrint {
   constructor(
     id: number=0,
     name: string | null ='',
-    StlFileUrl: string | null ='',
+    stlFileUrl: string | null ='',
     customGcodeUrl: string | null ='',
     printerName: string | null ='',
     filamentType: string | null ='',
@@ -34,7 +34,7 @@ export class ThreeDPrint {
   ) {
     this.id = id;
     this.name = name;
-    this.StlFileUrl = StlFileUrl;
+    this.stlFileUrl = stlFileUrl;
     this.customGcodeUrl = customGcodeUrl;
     this.printerName = printerName;
     this.filamentType = filamentType;
