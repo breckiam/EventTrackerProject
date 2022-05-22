@@ -7,7 +7,31 @@
   <button mat-icon-button class="example-icon favorite-icon" [routerLink]="['/create']">
     <mat-icon>add</mat-icon>
   </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="open(content)">
     <mat-icon>search</mat-icon>
   </button>
 </mat-toolbar>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="mb-3">
+        <div class="input-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Id or print name search</mat-label>
+            <input matInput type="text" name="searchInput"  ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="searchInput">
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); idOrKeyword(searchInput)">
+      Search</button>
+  </div>
+</ng-template>

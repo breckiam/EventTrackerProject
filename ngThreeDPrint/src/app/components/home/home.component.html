@@ -19,17 +19,15 @@
       <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-4 shadow-lg" [style]="getCardImage(print)"
       matRipple [matRippleCentered]="true" matRippleColor="rgb(121, 50, 168, 0.25)" [matRippleTrigger]="trigger">
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-          <h2 class="pt-5 mt-5 display-6 lh-1 fw-bold"
-          >
-          {{print.name}}</h2>
+          <h2 class="pt-5 mt-5 display-6 lh-1 fw-bold">{{print.name}}</h2>
           <hr class="m-0" >
           <h5>{{print.printerName}}</h5>
           <ul class="d-flex list-unstyled mt-auto">
             <li class="me-auto">
-              <div class="mt-4" [matBadge]="print.creates" matBadgePosition="before" matBadgeColor="primary" matBadgeSize="large"></div>
+              <h5 class="mt-4" [matBadge]="print.creates" matBadgePosition="after" matBadgeColor="primary" matBadgeSize="medium">Creates:  </h5>
             </li>
             <li class="d-flex align-items-center me-3">
-              <small><a class="text-decoration-none text-white" [href]="print.stlFileUrl">STL</a></small>
+              <small><a class="text-decoration-none text-white" target="_blank" [href]="print.stlFileUrl">STL</a></small>
             </li>
             <div #trigger>
               <button #trigger mat-raised-button color="primary" [routerLink]="['/prints/' + print.id]">View me</button>

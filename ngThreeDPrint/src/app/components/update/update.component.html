@@ -1,7 +1,10 @@
 
 <div class="container">
   <mat-card>
-
+    <br>
+    <h3 *ngIf="!createMode">Update me :)</h3>
+    <h3 *ngIf="createMode">Create a new print :)</h3>
+    <br>
     <form class="example-form">
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Print name</mat-label>
@@ -90,8 +93,11 @@
           </mat-datepicker-actions>
         </mat-datepicker>
       </mat-form-field>
+      <br>
+      <br>
       <button *ngIf="!createMode" mat-raised-button color="primary" (click)="update(threeDPrint)">Update</button>
       <button *ngIf="createMode" mat-raised-button color="primary" (click)="addPrint(threeDPrint)">Create</button>
+      <br>
     </form>
   </mat-card>
 </div>
