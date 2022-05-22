@@ -26,6 +26,17 @@ loadTodos() {
   );
 }
 
+getTotalCreates() {
+  let creates: number = 0;
+  this.threeDPrints.forEach((print) =>{
+    if (print.creates){
+    creates += print.creates;
+    }
+  });
+
+  return creates;
+}
+
 getTosts() {
   return this.toastSvc.toasts;
 }
@@ -40,6 +51,10 @@ setPrintImage(print: ThreeDPrint) {
   } else {
     return 'https://images.unsplash.com/photo-1622737133809-d95047b9e673?'
   }
+}
+
+getCardImage(print: ThreeDPrint) {
+  return 'background-image: url(' + this.setPrintImage(print) + ');';
 }
 
 }

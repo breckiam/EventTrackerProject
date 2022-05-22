@@ -1,3 +1,4 @@
+import { NavigationComponent } from './components/navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCardModule} from '@angular/material/card';
@@ -7,11 +8,14 @@ import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ThreeDService } from './services/three-d.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,7 +30,8 @@ import { UpdateComponent } from './components/update/update.component';
     AppComponent,
     HomeComponent,
     SinglePrintComponent,
-    UpdateComponent
+    UpdateComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,10 @@ import { UpdateComponent } from './components/update/update.component';
     MatButtonModule,
     MatInputModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatIconModule
   ],
   providers: [ThreeDService],
   bootstrap: [AppComponent]
