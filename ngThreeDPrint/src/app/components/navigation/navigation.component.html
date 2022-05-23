@@ -15,7 +15,7 @@
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <h4 class="modal-title" id="modal-basic-title">Search</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
@@ -23,15 +23,15 @@
       <div class="mb-3">
         <div class="input-group">
           <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Id or print name search</mat-label>
-            <input matInput type="text" name="searchInput"  ngbDatepicker #dp="ngbDatepicker" [(ngModel)]="searchInput">
+            <mat-label>Id search</mat-label>
+            <input matInput type="number" name="searchInput" [(ngModel)]="searchInput">
           </mat-form-field>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); idOrKeyword(searchInput)">
+    <button  type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); idOrKeyword(searchInput)">
       Search</button>
   </div>
 </ng-template>

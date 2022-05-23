@@ -34,6 +34,16 @@ export class ThreeDService {
     );
   }
 
+  showByKeyword(keyword: string) {
+    return this.http.get<ThreeDPrint>(this.url + '/search/' + keyword)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('KABOOM');
+      })
+    );
+  }
+
   create(newPrint: ThreeDPrint) {
     return this.http.post<ThreeDPrint>(this.url, newPrint)
     .pipe(
@@ -68,7 +78,7 @@ export class ThreeDService {
         }
       )
     );
-}
+  }
 
 
 
