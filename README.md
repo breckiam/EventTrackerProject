@@ -15,6 +15,10 @@ delete 3D prints from the database.
 
 Front end added to the project. This is a dynamic single page application that uses javascript to access REST uri destinations. Along with HTML and CSS/Bootstrap this gives the user access to view, create, update, and delete prints from the database.
 
+#### V3.0
+
+Front end was redone with the use of angular. This gives the same functionality as V2.0 with a more refreshed UI and layout. Styling was done with a mixture bootstrap, Angular Bootstrap, and Angular Materials.
+
 ## REST route URIs
 - PREFIX: http://54.177.221.5:8080/PrintTrackerREST
   - GET <strong>/api/prints</strong>
@@ -42,3 +46,6 @@ This project was a great learning experience for learning how to set up a REST p
 
 #### Adding a javascript frontend
 Creating the front end for this project thought me how to access requests from URIs with the use of XMLHttpRequests. From these requests I was able to dynamically display the information retried from the request, by appending html to my index page. I ran into some issues with displaying things the way I wanted to by changing the display on the element. I could have made my code more clean by having a clearer plan for placing information into my divs, and only selecting the element once in my init() vs in each event listener function.
+
+#### Adding Angular front end
+I had a lot of fun creating the front end it angular for this project. Angular really simplified the process of doing the same thing and more that I was trying to do with javascript. I ran into some issues with connecting my REST api to my angular project at first, but this ended up being solved in the @CrossOrigin annotation I had forgot to add. I really went down a rabbit hole with looking at all the different styling APIs that can be added to my projects, hence why I have three of them installed onto the project. This is really cool and I had a lot of fun playing around with all the elements that can be used and customized, and will be doing more research on how to implement more of these apis into my project. 
